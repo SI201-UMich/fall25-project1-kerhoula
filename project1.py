@@ -63,3 +63,25 @@ def find_year_most_data(penguins):
     print(f"The most penguin data was collected in {top_year} on {top_island} Island for {top_species} penguins ({top_count} entries).")
     return top_year, top_island, top_species
 
+### Writing my results to a file.
+def write_results_to_file(averages, top_year, top_island, top_species):
+    with open("penguin_results.txt", "w") as f:
+        f.write(" Penguin Data Analysis Results \n\n\n")
+        # Anna Kerhoulas Calculation 1: Beak size results
+        f.write(" Average Beak Sizes (mm):\n")
+        f.write("(Beak size calculated as the average of bill length and bill depth.)\n\n")
+        f.write(f"  Adelie: {averages['Adelie']:.3f} mm\n")
+        f.write(f"  Gentoo: {averages['Gentoo']:.3f} mm\n")
+        f.write(f"  Chinstrap: {averages['Chinstrap']:.3f} mm\n\n")
+        # Anna Kerhoulas Calculation 2: Year/Island/Species with most data
+        f.write(f" The most penguin data was collected in {top_year} on {top_island} Island for {top_species} penguins.\n\n")
+
+    print(" Results written to penguin_results.txt")
+
+def main():
+    penguins = load_penguins("penguins.csv")
+    averages = average_beak_size(penguins)
+    top_year, top_island, top_species = find_year_most_data(penguins)
+    write_results_to_file(averages, top_year, top_island, top_species)
+ 
+main()
