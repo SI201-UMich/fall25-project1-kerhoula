@@ -44,3 +44,22 @@ def average_beak_size(penguins):
         if species in species_averages:
             print(f"Average beak size for {species}: {species_averages[species]:.3f}")
     return species_averages
+
+### Anna Kerhoulas Calculation 2: Year that they collected most data on penguins.
+### COLUMNS USED: year, island, species
+### Primary Function:
+def find_year_most_data(penguins):
+    combo_counts = {}
+    for p in penguins:
+        year = p['year']
+        island = p['island']
+        species = p['species']
+        combo = (year, island, species)
+        combo_counts[combo] = combo_counts.get(combo, 0) + 1
+    # Find which (year, island, species) combination has the most data entries
+    top_combo = max(combo_counts, key=combo_counts.get)
+    top_year, top_island, top_species = top_combo
+    top_count = combo_counts[top_combo]
+    print(f"The most penguin data was collected in {top_year} on {top_island} Island for {top_species} penguins ({top_count} entries).")
+    return top_year, top_island, top_species
+
